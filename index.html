@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - BunNote</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lang-switcher {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .lang-switcher button {
+            background: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-left: 6px;
+            color: #555;
+        }
+        .lang-switcher button.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
+        h1 {
+            font-size: 24px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 { font-size: 18px; margin-top: 30px; color: #000; }
+        p, li { font-size: 15px; color: #555; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        a { color: #333; }
+        .footer {
+            margin-top: 50px;
+            font-size: 13px;
+            color: #999;
+            text-align: center;
+        }
+        .contact-box {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            margin-top: 20px;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switcher">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">日本語</button>
+        <button id="btn-en" onclick="setLang('en')">English</button>
+    </div>
+
+    <!-- 日本語 -->
+    <div id="content-ja">
+        <h1>BunNote プライバシーポリシー</h1>
+        <p>個人開発者BunDev（以下「当方」）は、本アプリケーション「BunNote」（以下「本アプリ」）におけるユーザーの情報の取り扱いについて、以下の通りプライバシーポリシーを定めます。</p>
+
+        <h2>1. 基本方針</h2>
+        <p>当方は、ユーザーのプライバシー保護を最優先事項とします。本アプリはユーザーが入力した情報を一切収集・送信せず、すべてのデータはユーザー自身のデバイス内にのみ保存されます。</p>
+
+        <h2>2. データの保存と暗号化</h2>
+        <p>本アプリに入力したすべての情報は、AES-256暗号化（SQLCipher）によりマスターパスワードから派生した鍵で暗号化され、デバイス内にのみ保存されます。開発者を含む第三者がこれらのデータにアクセスすることは技術的に不可能です。</p>
+
+        <h2>3. 取得する情報と利用目的</h2>
+        <ul>
+            <li><strong>メモデータ</strong>：アプリ内で入力された口座情報・パスワード・証明書情報等は、ユーザーの端末内（SQLCipher暗号化Roomデータベース）にのみ保存されます。</li>
+            <li><strong>設定データ</strong>：テーマカラー・表示設定・リマインダー設定等は端末内（DataStore）に保存されます。</li>
+            <li><strong>バックアップデータ</strong>：バックアップ機能はユーザーが任意で実行するものです。保存先はユーザー自身が選択し（Google Driveを含む任意のストレージ）、当方のサーバーには一切送信されません。</li>
+        </ul>
+
+        <h2>4. 権限の使用について</h2>
+        <p>本アプリは機能提供のため、以下の権限を使用します。取得した情報を第三者に提供することはありません。</p>
+        <ul>
+            <li><strong>インターネット (INTERNET)</strong>：Proプランの購入・復元のためのGoogle Play Billingとの通信にのみ使用します。ユーザーの個人情報を収集・送信することはありません。</li>
+            <li><strong>生体認証 (USE_BIOMETRIC)</strong>：指紋・顔認証によるアプリのロック解除機能のため。</li>
+            <li><strong>通知 (POST_NOTIFICATIONS)</strong>：リマインダー通知の送信のため。</li>
+            <li><strong>正確なアラーム (SCHEDULE_EXACT_ALARM)</strong>：指定した時刻に正確にリマインダーを作動させるため。</li>
+            <li><strong>起動完了受信 (RECEIVE_BOOT_COMPLETED)</strong>：端末の再起動後にリマインダーのスケジュールを自動復元するため。</li>
+        </ul>
+
+        <h2>5. 不具合報告</h2>
+        <p>アプリ内の「不具合を報告する」機能は、ユーザーがクラッシュログの内容を確認した上で、任意でメールを送信するものです。自動的な情報送信は行いません。Firebase Crashlytics等のクラッシュレポートサービスは使用していません。</p>
+
+        <h2>6. 第三者サービスによるデータ収集</h2>
+        <p><strong>Google Play Billing（決済）</strong><br>
+        Proプランの提供に「Google Play Billing」を利用しています。決済情報はGoogle社によって管理され、当方が決済詳細情報にアクセスすることはありません。</p>
+        <p>上記以外の広告SDK・分析SDK・クラッシュレポートサービス等の外部SDKは一切使用していません。</p>
+
+        <h2>7. お問い合わせ窓口</h2>
+        <div class="contact-box">
+            <strong>BunDev</strong><br>
+            住所：〒105-0013 東京都港区浜松町２丁目２番１５号 浜松町ダイヤビル２Ｆ<br>
+            メール：support.bun.apps@gmail.com
+        </div>
+
+        <div class="footer">
+            制定日：2026年8月23日　最終更新日：2026年8月23日<br>
+            © 2026 BunDev
+        </div>
+    </div>
+
+    <!-- English -->
+    <div id="content-en" class="hidden">
+        <h1>BunNote Privacy Policy</h1>
+        <p>BunDev ("we" or "us"), an independent developer, has established this Privacy Policy regarding the handling of user information in the application "BunNote" ("the App").</p>
+
+        <h2>1. Basic Policy</h2>
+        <p>We place the highest priority on protecting user privacy. The App does not collect or transmit any information entered by users. All data is stored exclusively on the user's own device.</p>
+
+        <h2>2. Data Storage and Encryption</h2>
+        <p>All information entered into the App is encrypted using AES-256 (SQLCipher) with a key derived from your master password, and stored only on your device. It is technically impossible for us or any third party — including the developer — to access this data.</p>
+
+        <h2>3. Information Handled and Purpose</h2>
+        <ul>
+            <li><strong>Memo Data</strong>: Bank account details, passwords, identification information, etc. entered in the App are stored only on your device (SQLCipher-encrypted Room database).</li>
+            <li><strong>Settings Data</strong>: Theme color, display settings, reminder settings, etc. are stored on your device (DataStore).</li>
+            <li><strong>Backup Data</strong>: The backup feature is entirely user-initiated. You choose where your backup file is saved (any storage you select, including Google Drive), and it is never sent to our servers.</li>
+        </ul>
+
+        <h2>4. Permissions</h2>
+        <p>The App uses the following permissions to provide its features. Information obtained is never shared with third parties.</p>
+        <ul>
+            <li><strong>Internet (INTERNET)</strong>: Used solely for communication with Google Play Billing to purchase and restore the Pro Plan. No personal user data is collected or transmitted.</li>
+            <li><strong>Biometric (USE_BIOMETRIC)</strong>: For unlocking the App using fingerprint or face authentication.</li>
+            <li><strong>Notifications (POST_NOTIFICATIONS)</strong>: To send reminder notifications.</li>
+            <li><strong>Exact Alarm (SCHEDULE_EXACT_ALARM)</strong>: To trigger reminders at the exact scheduled time.</li>
+            <li><strong>Boot Completed (RECEIVE_BOOT_COMPLETED)</strong>: To automatically restore reminder schedules after device restart.</li>
+        </ul>
+
+        <h2>5. Bug Reports</h2>
+        <p>The in-app "Report a Bug" feature sends an email only after you review the crash log content and choose to send it manually. No automatic data transmission occurs. We do not use Firebase Crashlytics or any other crash reporting service.</p>
+
+        <h2>6. Third-Party Services</h2>
+        <p><strong>Google Play Billing (Payments)</strong><br>
+        The App uses Google Play Billing for the Pro Plan. Payment information is managed by Google, and we do not have access to payment details.</p>
+        <p>We do not use any advertising SDKs, analytics SDKs, crash reporting services, or any other third-party SDKs beyond the above.</p>
+
+        <h2>7. Contact</h2>
+        <div class="contact-box">
+            <strong>BunDev</strong><br>
+            Email: support.bun.apps@gmail.com
+        </div>
+
+        <div class="footer">
+            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: August 23, 2026<br>
+            © 2026 BunDev
+        </div>
+    </div>
+</div>
+
+<script>
+function setLang(lang) {
+    document.getElementById('content-ja').classList.toggle('hidden', lang !== 'ja');
+    document.getElementById('content-en').classList.toggle('hidden', lang !== 'en');
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
+</script>
+</body>
+</html>

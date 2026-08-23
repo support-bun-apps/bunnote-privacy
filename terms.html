@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - BunNote</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lang-switcher {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .lang-switcher button {
+            background: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-left: 6px;
+            color: #555;
+        }
+        .lang-switcher button.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
+        h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
+        h2 { font-size: 18px; margin-top: 30px; color: #000; }
+        p, li { font-size: 15px; color: #555; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .footer { margin-top: 50px; font-size: 13px; color: #999; text-align: center; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switcher">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">日本語</button>
+        <button id="btn-en" onclick="setLang('en')">English</button>
+    </div>
+
+    <!-- 日本語 -->
+    <div id="content-ja">
+        <h1>BunNote 利用規約</h1>
+        <p>本利用規約（以下「本規約」）は、個人開発者BunDev（以下「当方」）が提供するスマートフォン向けアプリケーション「BunNote」（以下「本アプリ」）の利用条件を定めるものです。</p>
+
+        <h2>第1条（規約への同意）</h2>
+        <p>ユーザーは、本アプリを初めて起動した際に表示される同意画面にて本規約への同意を確認します。同意いただけない場合、本アプリを利用することはできません。</p>
+
+        <h2>第2条（サービスの内容）</h2>
+        <p>本アプリは、口座情報・パスワード・証明書などの個人情報をデバイス上で安全に管理するためのメモアプリです。入力されたすべてのデータはマスターパスワードによりデバイス内で暗号化されます。一部の機能（以下「Proプラン」）は有料であり、一度の購入で永続的に利用可能な買い切り型ライセンスとして提供されます。Proプランにはテーマカラー選択（10色）・ホーム画面ウィジェットが含まれます。</p>
+
+        <h2>第3条（マスターパスワードとデータの責任）</h2>
+        <p>マスターパスワードはユーザー自身が管理するものであり、当方はこれを知ることができません。マスターパスワードの紛失・失念によりデータにアクセスできなくなった場合、当方は一切の責任を負いません。定期的なバックアップを強く推奨します。</p>
+
+        <h2>第4条（禁止事項）</h2>
+        <ul>
+            <li>本アプリの逆コンパイル、リバースエンジニアリング、またはこれに類する行為。</li>
+            <li>本アプリの不具合を意図的に利用してProプランを不正に利用する行為。</li>
+            <li>当方または第三者の知的財産権を侵害する行為。</li>
+            <li>法令に違反する目的で本アプリを使用する行為。</li>
+        </ul>
+
+        <h2>第5条（免責事項）</h2>
+        <p>当方は、本アプリの利用によって生じた損害（データの消失、通知の遅延、デバイスの故障・初期化等によるデータ損失、その他の不利益）について、当方に故意または重過失がある場合を除き、一切の責任を負いません。本アプリは「現状有姿」で提供され、将来のOSアップデート等に伴う完全な動作継続を保証するものではありません。</p>
+
+        <h2>第6条（規約の変更）</h2>
+        <p>当方は、必要に応じて本規約を変更することがあります。変更後の規約は、本アプリ内または公式サイトに掲載した時点から効力を生じます。</p>
+
+        <h2>第7条（準拠法・管轄）</h2>
+        <p>本規約は日本法に準拠し、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+
+        <div class="footer">
+            制定日：2026年8月23日　最終更新日：2026年8月23日<br>
+            © 2026 BunDev
+        </div>
+    </div>
+
+    <!-- English -->
+    <div id="content-en" class="hidden">
+        <h1>BunNote Terms of Service</h1>
+        <p>These Terms of Service ("Terms") govern your use of the smartphone application "BunNote" ("the App") provided by BunDev ("we" or "us"), an independent developer.</p>
+
+        <h2>Article 1 (Agreement to Terms)</h2>
+        <p>Users confirm their agreement to these Terms on the consent screen displayed when the App is launched for the first time. If you do not agree, you may not use the App.</p>
+
+        <h2>Article 2 (Service Content)</h2>
+        <p>The App is a note-taking application designed to help users securely manage personal information such as bank account details, passwords, and identification documents on their device. All data entered is encrypted on-device using a key derived from your master password. Certain features ("Pro Plan") are available for a one-time purchase as a permanent license. The Pro Plan includes theme color selection (10 colors) and a home screen widget.</p>
+
+        <h2>Article 3 (Master Password and Data Responsibility)</h2>
+        <p>Your master password is managed solely by you, and we have no way to access or recover it. We bear no responsibility for loss of access to your data due to a forgotten or lost master password. We strongly recommend creating regular backups.</p>
+
+        <h2>Article 4 (Prohibited Actions)</h2>
+        <ul>
+            <li>Decompiling, reverse engineering, or similar acts against the App.</li>
+            <li>Intentionally exploiting bugs to gain unauthorized access to the Pro Plan.</li>
+            <li>Infringing on the intellectual property rights of us or any third party.</li>
+            <li>Using the App for any purpose that violates applicable laws.</li>
+        </ul>
+
+        <h2>Article 5 (Disclaimer)</h2>
+        <p>We shall not be liable for any damages arising from the use of the App (including data loss due to device failure or factory reset, notification delays, or other disadvantages), except in cases of our willful misconduct or gross negligence. The App is provided "as is" and we do not guarantee continued full functionality following future OS updates.</p>
+
+        <h2>Article 6 (Changes to Terms)</h2>
+        <p>We may update these Terms as necessary. Updated Terms take effect when posted within the App or on our official site.</p>
+
+        <h2>Article 7 (Governing Law)</h2>
+        <p>These Terms are governed by the laws of Japan. The Tokyo District Court shall have exclusive jurisdiction as the court of first instance.</p>
+
+        <div class="footer">
+            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: August 23, 2026<br>
+            © 2026 BunDev
+        </div>
+    </div>
+</div>
+
+<script>
+function setLang(lang) {
+    document.getElementById('content-ja').classList.toggle('hidden', lang !== 'ja');
+    document.getElementById('content-en').classList.toggle('hidden', lang !== 'en');
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
+</script>
+</body>
+</html>
