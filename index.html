@@ -79,41 +79,53 @@
 
     <!-- 日本語 -->
     <div id="content-ja">
-        <h1>BunNote プライバシーポリシー</h1>
-        <p>個人開発者BunDev（以下「当方」）は、本アプリケーション「BunNote」（以下「本アプリ」）におけるユーザーの情報の取り扱いについて、以下の通りプライバシーポリシーを定めます。</p>
+        <h1>ないしょメモ（BunNote） プライバシーポリシー</h1>
+        <p>個人開発者BunDev（以下「当方」）は、本アプリケーション「ないしょメモ（BunNote）」（以下「本アプリ」）におけるユーザーの情報の取り扱いについて、以下の通りプライバシーポリシーを定めます。</p>
 
         <h2>1. 基本方針</h2>
-        <p>当方は、ユーザーのプライバシー保護を最優先事項とします。本アプリはユーザーが入力した情報を一切収集・送信せず、すべてのデータはユーザー自身のデバイス内にのみ保存されます。</p>
+        <p>当方は、ユーザーのプライバシー保護を最優先事項とします。本アプリはユーザーが入力した情報を一切収集・送信せず、すべてのデータはユーザー自身のデバイス内にのみ保存されます。当方は分析SDK・広告SDK・クラッシュレポートサービスを一切使用していません。</p>
 
         <h2>2. データの保存と暗号化</h2>
-        <p>本アプリに入力したすべての情報は、AES-256暗号化（SQLCipher）によりマスターパスワードから派生した鍵で暗号化され、デバイス内にのみ保存されます。開発者を含む第三者がこれらのデータにアクセスすることは技術的に不可能です。</p>
+        <p>本アプリに入力したメモの内容は、AES-256暗号化（SQLCipher）によりマスターパスワードから派生した鍵で暗号化され、デバイス内にのみ保存されます。マスターパスワードは当方のサーバーにも端末にも平文で保存されません。開発者を含む第三者がこれらのデータにアクセスすることは技術的に不可能です。</p>
 
-        <h2>3. 取得する情報と利用目的</h2>
+        <h2>3. 端末内に保存される情報と利用目的</h2>
+        <p>以下はすべてユーザーの端末内にのみ保存され、当方のサーバーに送信されることはありません。</p>
         <ul>
-            <li><strong>メモデータ</strong>：アプリ内で入力された口座情報・パスワード・証明書情報等は、ユーザーの端末内（SQLCipher暗号化Roomデータベース）にのみ保存されます。</li>
+            <li><strong>メモデータ</strong>：アプリ内で入力された口座情報・パスワード・証明書情報・予定等は、暗号化された状態で端末内（SQLCipher暗号化Roomデータベース）にのみ保存されます。</li>
             <li><strong>設定データ</strong>：テーマカラー・表示設定・リマインダー設定等は端末内（DataStore）に保存されます。</li>
-            <li><strong>バックアップデータ</strong>：バックアップ機能はユーザーが任意で実行するものです。保存先はユーザー自身が選択し（Google Driveを含む任意のストレージ）、当方のサーバーには一切送信されません。</li>
+            <li><strong>ウィジェット表示用データ</strong>：ホーム画面ウィジェットにカレンダーの印を表示するため、予定の<strong>日付と種別のみ</strong>を端末内に保存します。メモのタイトルや本文など、内容にあたる情報は保存しません。この情報はウィジェットの描画にのみ使用され、外部に送信されることはありません。</li>
+            <li><strong>壁紙画像</strong>：透かし壁紙に設定した画像は、端末内の本アプリ専用領域にコピーして保存されます。他のアプリから参照されることはなく、外部に送信されることもありません。</li>
+            <li><strong>バックアップデータ</strong>：バックアップ機能はユーザーが任意で実行するものです。書き出されるファイルは<strong>暗号化されたままの状態</strong>であり、保存先はユーザー自身が選択します（端末内ストレージ、Google Drive等の任意の保存先）。当方のサーバーには一切送信されません。復元には、そのバックアップを作成した時点と同じマスターパスワードが必要です。</li>
         </ul>
 
         <h2>4. 権限の使用について</h2>
         <p>本アプリは機能提供のため、以下の権限を使用します。取得した情報を第三者に提供することはありません。</p>
         <ul>
             <li><strong>インターネット (INTERNET)</strong>：Proプランの購入・復元のためのGoogle Play Billingとの通信にのみ使用します。ユーザーの個人情報を収集・送信することはありません。</li>
-            <li><strong>生体認証 (USE_BIOMETRIC)</strong>：指紋・顔認証によるアプリのロック解除機能のため。</li>
+            <li><strong>アプリ内課金 (com.android.vending.BILLING)</strong>：Google Play を通じたProプランの購入・復元のため。</li>
+            <li><strong>生体認証 (USE_BIOMETRIC / USE_FINGERPRINT)</strong>：指紋・顔認証によるアプリのロック解除機能のため。生体情報そのものはAndroid OSが管理し、本アプリが取得・保存することはありません。</li>
             <li><strong>通知 (POST_NOTIFICATIONS)</strong>：リマインダー通知の送信のため。</li>
             <li><strong>正確なアラーム (SCHEDULE_EXACT_ALARM)</strong>：指定した時刻に正確にリマインダーを作動させるため。</li>
-            <li><strong>起動完了受信 (RECEIVE_BOOT_COMPLETED)</strong>：端末の再起動後にリマインダーのスケジュールを自動復元するため。</li>
+            <li><strong>起動完了受信 (RECEIVE_BOOT_COMPLETED)</strong>：端末の再起動後にリマインダーのスケジュールとウィジェットの表示を自動復元するため。</li>
         </ul>
+        <p>なお、壁紙画像の選択にはAndroid標準のフォトピッカーを使用しているため、<strong>写真ライブラリ全体へのアクセス権限は要求しません</strong>。本アプリが扱えるのはユーザーがその場で選択した画像のみです。</p>
 
         <h2>5. 不具合報告</h2>
-        <p>アプリ内の「不具合を報告する」機能は、ユーザーがクラッシュログの内容を確認した上で、任意でメールを送信するものです。自動的な情報送信は行いません。Firebase Crashlytics等のクラッシュレポートサービスは使用していません。</p>
+        <p>本アプリはFirebase Crashlytics等のクラッシュレポートサービスを使用していません。アプリが予期せず終了した場合、原因調査のための記録（例外の種類・発生箇所のクラス名・メソッド名・行番号）を端末内にのみ保存します。この記録にはメモの内容・マスターパスワード・ファイルパスは含まれません。</p>
+        <p>アプリ内の「不具合を報告する」機能は、ユーザーがその記録の内容を画面上で確認した上で、任意でメールを送信するものです。自動的な送信は一切行いません。</p>
 
         <h2>6. 第三者サービスによるデータ収集</h2>
         <p><strong>Google Play Billing（決済）</strong><br>
-        Proプランの提供に「Google Play Billing」を利用しています。決済情報はGoogle社によって管理され、当方が決済詳細情報にアクセスすることはありません。</p>
+        Proプランの提供に「Google Play Billing」を利用しています。決済情報はGoogle社によって管理され、当方が決済詳細情報にアクセスすることはありません。当方が受け取るのは「購入が完了したかどうか」の情報のみです。</p>
         <p>上記以外の広告SDK・分析SDK・クラッシュレポートサービス等の外部SDKは一切使用していません。</p>
 
-        <h2>7. お問い合わせ窓口</h2>
+        <h2>7. お子様の利用について</h2>
+        <p>本アプリは特定の年齢層を対象として設計されたものではなく、いかなる年齢のユーザーからも個人情報を収集しません。</p>
+
+        <h2>8. プライバシーポリシーの変更</h2>
+        <p>当方は、本ポリシーを変更することがあります。重要な変更を行う場合は、本ページに変更後の内容を掲載します。</p>
+
+        <h2>9. お問い合わせ窓口</h2>
         <div class="contact-box">
             <strong>BunDev</strong><br>
             住所：〒105-0013 東京都港区浜松町２丁目２番１５号 浜松町ダイヤビル２Ｆ<br>
@@ -121,7 +133,7 @@
         </div>
 
         <div class="footer">
-            制定日：2026年8月23日　最終更新日：2026年8月23日<br>
+            制定日：2026年8月23日　最終更新日：2026年9月13日<br>
             © 2026 BunDev
         </div>
     </div>
@@ -132,44 +144,56 @@
         <p>BunDev ("we" or "us"), an independent developer, has established this Privacy Policy regarding the handling of user information in the application "BunNote" ("the App").</p>
 
         <h2>1. Basic Policy</h2>
-        <p>We place the highest priority on protecting user privacy. The App does not collect or transmit any information entered by users. All data is stored exclusively on the user's own device.</p>
+        <p>We place the highest priority on protecting user privacy. The App does not collect or transmit any information entered by users. All data is stored exclusively on the user's own device. We use no analytics SDKs, no advertising SDKs, and no crash reporting services.</p>
 
         <h2>2. Data Storage and Encryption</h2>
-        <p>All information entered into the App is encrypted using AES-256 (SQLCipher) with a key derived from your master password, and stored only on your device. It is technically impossible for us or any third party — including the developer — to access this data.</p>
+        <p>The content of your notes is encrypted using AES-256 (SQLCipher) with a key derived from your master password, and stored only on your device. Your master password is never stored in plain text, neither on our servers nor on your device. It is technically impossible for us or any third party — including the developer — to access this data.</p>
 
-        <h2>3. Information Handled and Purpose</h2>
+        <h2>3. Information Stored on Your Device</h2>
+        <p>All of the following is stored only on your device and is never transmitted to our servers.</p>
         <ul>
-            <li><strong>Memo Data</strong>: Bank account details, passwords, identification information, etc. entered in the App are stored only on your device (SQLCipher-encrypted Room database).</li>
+            <li><strong>Memo Data</strong>: Bank account details, passwords, identification information, schedules, etc. entered in the App are stored in encrypted form on your device only (SQLCipher-encrypted Room database).</li>
             <li><strong>Settings Data</strong>: Theme color, display settings, reminder settings, etc. are stored on your device (DataStore).</li>
-            <li><strong>Backup Data</strong>: The backup feature is entirely user-initiated. You choose where your backup file is saved (any storage you select, including Google Drive), and it is never sent to our servers.</li>
+            <li><strong>Widget Display Data</strong>: To show calendar markers on the home screen widget, the App stores <strong>only the dates and categories</strong> of your scheduled items on your device. No titles or note content are stored. This information is used solely to draw the widget and is never transmitted externally.</li>
+            <li><strong>Wallpaper Images</strong>: An image set as a watermark wallpaper is copied into the App's private storage area on your device. It is not accessible to other apps and is never transmitted externally.</li>
+            <li><strong>Backup Data</strong>: The backup feature is entirely user-initiated. The exported file remains <strong>encrypted</strong>, and you choose where it is saved (device storage, Google Drive, or any other destination you select). It is never sent to our servers. Restoring a backup requires the same master password that was in use when the backup was created.</li>
         </ul>
 
         <h2>4. Permissions</h2>
         <p>The App uses the following permissions to provide its features. Information obtained is never shared with third parties.</p>
         <ul>
             <li><strong>Internet (INTERNET)</strong>: Used solely for communication with Google Play Billing to purchase and restore the Pro Plan. No personal user data is collected or transmitted.</li>
-            <li><strong>Biometric (USE_BIOMETRIC)</strong>: For unlocking the App using fingerprint or face authentication.</li>
+            <li><strong>In-app Billing (com.android.vending.BILLING)</strong>: To purchase and restore the Pro Plan through Google Play.</li>
+            <li><strong>Biometric (USE_BIOMETRIC / USE_FINGERPRINT)</strong>: For unlocking the App using fingerprint or face authentication. Biometric data itself is managed by the Android OS and is never accessed or stored by the App.</li>
             <li><strong>Notifications (POST_NOTIFICATIONS)</strong>: To send reminder notifications.</li>
             <li><strong>Exact Alarm (SCHEDULE_EXACT_ALARM)</strong>: To trigger reminders at the exact scheduled time.</li>
-            <li><strong>Boot Completed (RECEIVE_BOOT_COMPLETED)</strong>: To automatically restore reminder schedules after device restart.</li>
+            <li><strong>Boot Completed (RECEIVE_BOOT_COMPLETED)</strong>: To automatically restore reminder schedules and widget display after a device restart.</li>
         </ul>
+        <p>Wallpaper selection uses the Android system photo picker, so the App <strong>does not request access to your photo library</strong>. It can only handle the single image you explicitly select.</p>
 
-        <h2>5. Bug Reports</h2>
-        <p>The in-app "Report a Bug" feature sends an email only after you review the crash log content and choose to send it manually. No automatic data transmission occurs. We do not use Firebase Crashlytics or any other crash reporting service.</p>
+        <h2>5. Crash Records and Bug Reports</h2>
+        <p>We do not use Firebase Crashlytics or any other crash reporting service. If the App terminates unexpectedly, a diagnostic record (exception type, class name, method name and line number) is saved on your device only. This record contains no note content, no master password and no file paths.</p>
+        <p>The in-app "Report a Bug" feature sends an email only after you review that record on screen and choose to send it. No automatic transmission ever occurs.</p>
 
         <h2>6. Third-Party Services</h2>
         <p><strong>Google Play Billing (Payments)</strong><br>
-        The App uses Google Play Billing for the Pro Plan. Payment information is managed by Google, and we do not have access to payment details.</p>
+        The App uses Google Play Billing for the Pro Plan. Payment information is managed by Google, and we do not have access to payment details. We only receive whether a purchase has been completed.</p>
         <p>We do not use any advertising SDKs, analytics SDKs, crash reporting services, or any other third-party SDKs beyond the above.</p>
 
-        <h2>7. Contact</h2>
+        <h2>7. Children</h2>
+        <p>The App is not directed at any particular age group and does not collect personal information from users of any age.</p>
+
+        <h2>8. Changes to This Policy</h2>
+        <p>We may update this Policy. Any significant changes will be posted on this page.</p>
+
+        <h2>9. Contact</h2>
         <div class="contact-box">
             <strong>BunDev</strong><br>
             Email: support.bun.apps@gmail.com
         </div>
 
         <div class="footer">
-            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: August 23, 2026<br>
+            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: September 13, 2026<br>
             © 2026 BunDev
         </div>
     </div>
