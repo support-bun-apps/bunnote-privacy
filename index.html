@@ -83,25 +83,38 @@
         <p>個人開発者BunDev（以下「当方」）は、本アプリケーション「ないしょメモ（BunNote）」（以下「本アプリ」）におけるユーザーの情報の取り扱いについて、以下の通りプライバシーポリシーを定めます。</p>
 
         <h2>1. 基本方針</h2>
-        <p>当方は、ユーザーのプライバシー保護を最優先事項とします。本アプリはユーザーが入力した情報を一切収集・送信せず、すべてのデータはユーザー自身のデバイス内にのみ保存されます。当方は分析SDK・広告SDK・クラッシュレポートサービスを一切使用していません。</p>
+        <p>当方は、ユーザーのプライバシー保護を最優先事項とします。本アプリはユーザーが入力した情報を当方が収集することは一切なく、データは原則としてユーザー自身のデバイス内にのみ保存されます。唯一の例外は、ユーザーが自ら有効にした場合に限り、<strong>暗号化したバックアップをユーザー本人のGoogleドライブに保存する機能</strong>です（第4条）。このバックアップは当方のサーバーを経由せず、当方を含む第三者が内容を読むことはできません。当方は分析SDK・広告SDK・クラッシュレポートサービスを一切使用していません。</p>
 
         <h2>2. データの保存と暗号化</h2>
-        <p>本アプリに入力したメモの内容は、AES-256暗号化（SQLCipher）によりマスターパスワードから派生した鍵で暗号化され、デバイス内にのみ保存されます。マスターパスワードは当方のサーバーにも端末にも平文で保存されません。開発者を含む第三者がこれらのデータにアクセスすることは技術的に不可能です。</p>
+        <p>本アプリに入力したメモの内容は、AES-256暗号化（SQLCipher）によりマスターパスワードから派生した鍵で暗号化され、デバイス内に保存されます（ユーザーが第4条のバックアップを利用した場合は、暗号化されたままの複製がユーザー本人のGoogleドライブにも保存されます）。マスターパスワードは当方のサーバーにも端末にも平文で保存されません。開発者を含む第三者がこれらのデータにアクセスすることは技術的に不可能です。</p>
 
         <h2>3. 端末内に保存される情報と利用目的</h2>
-        <p>以下はすべてユーザーの端末内にのみ保存され、当方のサーバーに送信されることはありません。</p>
+        <p>以下はユーザーの端末内に保存され、当方のサーバーに送信されることはありません。</p>
         <ul>
             <li><strong>メモデータ</strong>：アプリ内で入力された口座情報・パスワード・証明書情報・予定等は、暗号化された状態で端末内（SQLCipher暗号化Roomデータベース）にのみ保存されます。</li>
             <li><strong>設定データ</strong>：テーマカラー・表示設定・リマインダー設定等は端末内（DataStore）に保存されます。</li>
+            <li><strong>通知の予定</strong>：端末の再起動後にマスターパスワードなしで通知を登録し直すため、通知を設定したメモの<strong>タイトルと通知日時</strong>は、暗号化されていない状態で端末内の本アプリ専用領域に保存されます。他のアプリから参照されることはなく、外部に送信されることもありません。通知を解除するかメモを削除すると、この情報も削除されます。なお、通知そのものにはメモのタイトルが表示されます。</li>
             <li><strong>ウィジェット表示用データ</strong>：ホーム画面ウィジェットにカレンダーの印を表示するため、予定の<strong>日付と種別のみ</strong>を端末内に保存します。メモのタイトルや本文など、内容にあたる情報は保存しません。この情報はウィジェットの描画にのみ使用され、外部に送信されることはありません。</li>
             <li><strong>壁紙画像</strong>：透かし壁紙に設定した画像は、端末内の本アプリ専用領域にコピーして保存されます。他のアプリから参照されることはなく、外部に送信されることもありません。</li>
-            <li><strong>バックアップデータ</strong>：バックアップ機能はユーザーが任意で実行するものです。書き出されるファイルは<strong>暗号化されたままの状態</strong>であり、保存先はユーザー自身が選択します（端末内ストレージ、Google Drive等の任意の保存先）。当方のサーバーには一切送信されません。復元には、そのバックアップを作成した時点と同じマスターパスワードが必要です。</li>
+            <li><strong>バックアップデータ（ファイルへの書き出し）</strong>：ファイルへの書き出しはユーザーが任意で実行するものです。書き出されるファイルは<strong>暗号化されたままの状態</strong>であり、保存先はユーザー自身が選択します。当方のサーバーには一切送信されません。復元には、そのバックアップを作成した時点のマスターパスワードが必要です。Googleドライブへのバックアップについては第4条をご覧ください。</li>
         </ul>
 
-        <h2>4. 権限の使用について</h2>
+        <h2>4. Googleドライブへのバックアップ</h2>
+        <p>本アプリは、機種変更やスマートフォンの故障に備えて、データをユーザー本人のGoogleドライブにバックアップする機能を備えています。この機能は<strong>ユーザーが自ら操作した場合にのみ</strong>動作し、初期状態では何も送信しません。</p>
+        <ul>
+            <li><strong>保存する内容</strong>：メモのデータベース・設定・壁紙画像を1つのファイルにまとめたものです。中身はすべて、マスターパスワードから派生した鍵で<strong>暗号化してから</strong>送信します。当方のサーバーを経由することはなく、当方・Google社を含む第三者が内容を読むことはできません。</li>
+            <li><strong>保存先</strong>：ユーザー本人のGoogleドライブ内の「ないしょメモ」フォルダです。手動で保存したバックアップ（機種変更用）は常に最新の1つだけを保管し、保存するたびに置き換えます。</li>
+            <li><strong>毎日のじどう保存</strong>：ユーザーがオンにした場合に限り、アプリのロックを解除したときに1日1回自動で保存します。保管するのは最新の3つまでで、古いものから削除します。初期状態はオフです。</li>
+            <li><strong>Googleアカウントへのアクセス</strong>：Googleの認可画面でユーザーが許可した場合に限り、Googleドライブの <code>drive.file</code> 権限（<strong>本アプリが作成したファイルにのみ</strong>アクセスできる権限）を使用します。本アプリはユーザーのほかのファイル、メールアドレス、氏名、連絡先等にアクセスせず、取得もしません。アクセスのための鍵（アクセストークン）は端末内で一時的に使用するのみで、保存も外部への送信も行いません。</li>
+            <li><strong>用途の限定</strong>：Google APIから受け取った情報は、バックアップの保存・一覧・復元・古いバックアップの削除にのみ使用し、それ以外の目的には使用せず、第三者に提供することもありません。本アプリによるGoogle APIから受け取った情報の使用および他のアプリへの転送は、<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API サービスのユーザーデータに関するポリシー</a>（限定使用の要件を含む）に準拠します。</li>
+            <li><strong>削除とアクセスの取り消し</strong>：バックアップはユーザー本人のGoogleドライブにあるため、ユーザーはいつでもGoogleドライブから削除できます。本アプリを削除してもGoogleドライブ上のバックアップは自動的には削除されません。本アプリへのアクセス許可は、Googleアカウントの「サードパーティ製のアプリとサービス」からいつでも取り消せます。</li>
+            <li><strong>復元に必要なもの</strong>：バックアップを作成したときと同じGoogleアカウント、およびバックアップを作成した時点のマスターパスワードが必要です。</li>
+        </ul>
+
+        <h2>5. 権限の使用について</h2>
         <p>本アプリは機能提供のため、以下の権限を使用します。取得した情報を第三者に提供することはありません。</p>
         <ul>
-            <li><strong>インターネット (INTERNET)</strong>：Proプランの購入・復元のためのGoogle Play Billingとの通信にのみ使用します。ユーザーの個人情報を収集・送信することはありません。</li>
+            <li><strong>インターネット (INTERNET)</strong>：Proプランの購入・復元のためのGoogle Play Billingとの通信、およびユーザーが利用した場合のGoogleドライブへのバックアップ・復元（第4条）にのみ使用します。当方がユーザーの個人情報を収集することはありません。</li>
             <li><strong>アプリ内課金 (com.android.vending.BILLING)</strong>：Google Play を通じたProプランの購入・復元のため。</li>
             <li><strong>生体認証 (USE_BIOMETRIC / USE_FINGERPRINT)</strong>：指紋・顔認証によるアプリのロック解除機能のため。生体情報そのものはAndroid OSが管理し、本アプリが取得・保存することはありません。</li>
             <li><strong>通知 (POST_NOTIFICATIONS)</strong>：リマインダー通知の送信のため。</li>
@@ -110,22 +123,24 @@
         </ul>
         <p>なお、壁紙画像の選択にはAndroid標準のフォトピッカーを使用しているため、<strong>写真ライブラリ全体へのアクセス権限は要求しません</strong>。本アプリが扱えるのはユーザーがその場で選択した画像のみです。</p>
 
-        <h2>5. 不具合報告</h2>
+        <h2>6. 不具合報告</h2>
         <p>本アプリはFirebase Crashlytics等のクラッシュレポートサービスを使用していません。アプリが予期せず終了した場合、原因調査のための記録（例外の種類・発生箇所のクラス名・メソッド名・行番号）を端末内にのみ保存します。この記録にはメモの内容・マスターパスワード・ファイルパスは含まれません。</p>
         <p>アプリ内の「不具合を報告する」機能は、ユーザーがその記録の内容を画面上で確認した上で、任意でメールを送信するものです。自動的な送信は一切行いません。</p>
 
-        <h2>6. 第三者サービスによるデータ収集</h2>
+        <h2>7. 第三者サービスによるデータ収集</h2>
         <p><strong>Google Play Billing（決済）</strong><br>
         Proプランの提供に「Google Play Billing」を利用しています。決済情報はGoogle社によって管理され、当方が決済詳細情報にアクセスすることはありません。当方が受け取るのは「購入が完了したかどうか」の情報のみです。</p>
+        <p><strong>Google ドライブ／Google Play 開発者サービス（バックアップ）</strong><br>
+        第4条のバックアップのために、GoogleドライブのAPIと、Google Play 開発者サービスによる認可の仕組みを利用しています。送信するバックアップは暗号化済みであり、Google社がその内容を読むことはできません。Googleアカウントおよびドライブの取り扱いについては、Google社のプライバシーポリシーが適用されます。</p>
         <p>上記以外の広告SDK・分析SDK・クラッシュレポートサービス等の外部SDKは一切使用していません。</p>
 
-        <h2>7. お子様の利用について</h2>
+        <h2>8. お子様の利用について</h2>
         <p>本アプリは特定の年齢層を対象として設計されたものではなく、いかなる年齢のユーザーからも個人情報を収集しません。</p>
 
-        <h2>8. プライバシーポリシーの変更</h2>
+        <h2>9. プライバシーポリシーの変更</h2>
         <p>当方は、本ポリシーを変更することがあります。重要な変更を行う場合は、本ページに変更後の内容を掲載します。</p>
 
-        <h2>9. お問い合わせ窓口</h2>
+        <h2>10. お問い合わせ窓口</h2>
         <div class="contact-box">
             <strong>BunDev</strong><br>
             住所：〒105-0013 東京都港区浜松町２丁目２番１５号 浜松町ダイヤビル２Ｆ<br>
@@ -133,7 +148,7 @@
         </div>
 
         <div class="footer">
-            制定日：2026年8月23日　最終更新日：2026年9月13日<br>
+            制定日：2026年8月23日　最終更新日：2026年9月20日<br>
             © 2026 BunDev
         </div>
     </div>
@@ -144,25 +159,38 @@
         <p>BunDev ("we" or "us"), an independent developer, has established this Privacy Policy regarding the handling of user information in the application "BunNote" ("the App").</p>
 
         <h2>1. Basic Policy</h2>
-        <p>We place the highest priority on protecting user privacy. The App does not collect or transmit any information entered by users. All data is stored exclusively on the user's own device. We use no analytics SDKs, no advertising SDKs, and no crash reporting services.</p>
+        <p>We place the highest priority on protecting user privacy. We never collect any information entered by users, and data is, as a rule, stored only on the user's own device. The single exception is a feature that, only when you turn it on yourself, saves an <strong>encrypted backup to your own Google Drive</strong> (Section 4). That backup never passes through our servers, and no third party — including us — can read its contents. We use no analytics SDKs, no advertising SDKs, and no crash reporting services.</p>
 
         <h2>2. Data Storage and Encryption</h2>
-        <p>The content of your notes is encrypted using AES-256 (SQLCipher) with a key derived from your master password, and stored only on your device. Your master password is never stored in plain text, neither on our servers nor on your device. It is technically impossible for us or any third party — including the developer — to access this data.</p>
+        <p>The content of your notes is encrypted using AES-256 (SQLCipher) with a key derived from your master password, and stored on your device (if you use the backup described in Section 4, an encrypted copy is also stored in your own Google Drive). Your master password is never stored in plain text, neither on our servers nor on your device. It is technically impossible for us or any third party — including the developer — to access this data.</p>
 
         <h2>3. Information Stored on Your Device</h2>
-        <p>All of the following is stored only on your device and is never transmitted to our servers.</p>
+        <p>The following is stored on your device and is never transmitted to our servers.</p>
         <ul>
             <li><strong>Memo Data</strong>: Bank account details, passwords, identification information, schedules, etc. entered in the App are stored in encrypted form on your device only (SQLCipher-encrypted Room database).</li>
             <li><strong>Settings Data</strong>: Theme color, display settings, reminder settings, etc. are stored on your device (DataStore).</li>
+            <li><strong>Scheduled Notifications</strong>: So that reminders can be re-registered after a device restart without your master password, the <strong>title and time</strong> of each note that has a reminder are stored unencrypted in the App's private storage area on your device. They are not accessible to other apps and are never transmitted externally. They are deleted when you turn the reminder off or delete the note. Note that the notification itself displays the note's title.</li>
             <li><strong>Widget Display Data</strong>: To show calendar markers on the home screen widget, the App stores <strong>only the dates and categories</strong> of your scheduled items on your device. No titles or note content are stored. This information is used solely to draw the widget and is never transmitted externally.</li>
             <li><strong>Wallpaper Images</strong>: An image set as a watermark wallpaper is copied into the App's private storage area on your device. It is not accessible to other apps and is never transmitted externally.</li>
-            <li><strong>Backup Data</strong>: The backup feature is entirely user-initiated. The exported file remains <strong>encrypted</strong>, and you choose where it is saved (device storage, Google Drive, or any other destination you select). It is never sent to our servers. Restoring a backup requires the same master password that was in use when the backup was created.</li>
+            <li><strong>Backup Data (Export to File)</strong>: Exporting to a file is entirely user-initiated. The exported file remains <strong>encrypted</strong>, and you choose where it is saved. It is never sent to our servers. Restoring a backup requires the master password that was in use when the backup was created. For backups to Google Drive, see Section 4.</li>
         </ul>
 
-        <h2>4. Permissions</h2>
+        <h2>4. Backup to Google Drive</h2>
+        <p>To prepare for a new phone or a broken one, the App can back up your data to your own Google Drive. This feature works <strong>only when you use it yourself</strong>; by default nothing is sent.</p>
+        <ul>
+            <li><strong>What is saved</strong>: A single file containing the note database, settings and wallpaper images. Everything in it is <strong>encrypted before it is sent</strong>, with a key derived from your master password. It never passes through our servers, and no third party — including us and Google — can read its contents.</li>
+            <li><strong>Where it is saved</strong>: A folder named "ないしょメモ" in your own Google Drive. A backup you save manually (for moving to a new phone) is kept as a single, latest file and is replaced each time you save.</li>
+            <li><strong>Daily automatic backup</strong>: Only if you turn it on, the App saves a backup once a day when you unlock it. Up to the three most recent are kept; older ones are deleted. It is off by default.</li>
+            <li><strong>Access to your Google Account</strong>: Only after you grant permission on Google's authorization screen, the App uses the Google Drive <code>drive.file</code> scope, which allows access <strong>only to files the App itself has created</strong>. The App does not access or obtain your other files, email address, name, contacts or any other account information. The access token is used only temporarily on your device and is neither stored nor sent anywhere else.</li>
+            <li><strong>Limited use</strong>: Information received from Google APIs is used only to save, list and restore backups and to delete older backups. It is not used for any other purpose and is never shared with third parties. The App's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+            <li><strong>Deletion and revoking access</strong>: Because backups are in your own Google Drive, you can delete them from Google Drive at any time. Uninstalling the App does not automatically delete backups in Google Drive. You can revoke the App's access at any time from "Third-party apps &amp; services" in your Google Account.</li>
+            <li><strong>What you need to restore</strong>: The same Google Account used to create the backup, and the master password that was in use when the backup was created.</li>
+        </ul>
+
+        <h2>5. Permissions</h2>
         <p>The App uses the following permissions to provide its features. Information obtained is never shared with third parties.</p>
         <ul>
-            <li><strong>Internet (INTERNET)</strong>: Used solely for communication with Google Play Billing to purchase and restore the Pro Plan. No personal user data is collected or transmitted.</li>
+            <li><strong>Internet (INTERNET)</strong>: Used solely for communication with Google Play Billing to purchase and restore the Pro Plan, and, if you use it, for backing up to and restoring from Google Drive (Section 4). We never collect any personal user data.</li>
             <li><strong>In-app Billing (com.android.vending.BILLING)</strong>: To purchase and restore the Pro Plan through Google Play.</li>
             <li><strong>Biometric (USE_BIOMETRIC / USE_FINGERPRINT)</strong>: For unlocking the App using fingerprint or face authentication. Biometric data itself is managed by the Android OS and is never accessed or stored by the App.</li>
             <li><strong>Notifications (POST_NOTIFICATIONS)</strong>: To send reminder notifications.</li>
@@ -171,29 +199,31 @@
         </ul>
         <p>Wallpaper selection uses the Android system photo picker, so the App <strong>does not request access to your photo library</strong>. It can only handle the single image you explicitly select.</p>
 
-        <h2>5. Crash Records and Bug Reports</h2>
+        <h2>6. Crash Records and Bug Reports</h2>
         <p>We do not use Firebase Crashlytics or any other crash reporting service. If the App terminates unexpectedly, a diagnostic record (exception type, class name, method name and line number) is saved on your device only. This record contains no note content, no master password and no file paths.</p>
         <p>The in-app "Report a Bug" feature sends an email only after you review that record on screen and choose to send it. No automatic transmission ever occurs.</p>
 
-        <h2>6. Third-Party Services</h2>
+        <h2>7. Third-Party Services</h2>
         <p><strong>Google Play Billing (Payments)</strong><br>
         The App uses Google Play Billing for the Pro Plan. Payment information is managed by Google, and we do not have access to payment details. We only receive whether a purchase has been completed.</p>
+        <p><strong>Google Drive / Google Play services (Backup)</strong><br>
+        For the backup described in Section 4, the App uses the Google Drive API and the authorization provided by Google Play services. Backups are encrypted before they are sent, so Google cannot read their contents. Google's Privacy Policy applies to your Google Account and Google Drive.</p>
         <p>We do not use any advertising SDKs, analytics SDKs, crash reporting services, or any other third-party SDKs beyond the above.</p>
 
-        <h2>7. Children</h2>
+        <h2>8. Children</h2>
         <p>The App is not directed at any particular age group and does not collect personal information from users of any age.</p>
 
-        <h2>8. Changes to This Policy</h2>
+        <h2>9. Changes to This Policy</h2>
         <p>We may update this Policy. Any significant changes will be posted on this page.</p>
 
-        <h2>9. Contact</h2>
+        <h2>10. Contact</h2>
         <div class="contact-box">
             <strong>BunDev</strong><br>
             Email: support.bun.apps@gmail.com
         </div>
 
         <div class="footer">
-            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: September 13, 2026<br>
+            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: September 20, 2026<br>
             © 2026 BunDev
         </div>
     </div>
