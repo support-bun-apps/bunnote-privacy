@@ -96,15 +96,16 @@
             <li><strong>通知の予定</strong>：端末の再起動後にマスターパスワードなしで通知を登録し直すため、通知を設定したメモの<strong>タイトルと通知日時</strong>は、暗号化されていない状態で端末内の本アプリ専用領域に保存されます。他のアプリから参照されることはなく、外部に送信されることもありません。通知を解除するかメモを削除すると、この情報も削除されます。なお、通知そのものにはメモのタイトルが表示されます。</li>
             <li><strong>ウィジェット表示用データ</strong>：ホーム画面ウィジェットにカレンダーの印を表示するため、予定の<strong>日付と種別のみ</strong>を端末内に保存します。メモのタイトルや本文など、内容にあたる情報は保存しません。この情報はウィジェットの描画にのみ使用され、外部に送信されることはありません。</li>
             <li><strong>壁紙画像</strong>：透かし壁紙に設定した画像は、端末内の本アプリ専用領域にコピーして保存されます。他のアプリから参照されることはなく、外部に送信されることもありません。</li>
+            <li><strong>添付画像</strong>：メモに添付した画像（ギャラリーから選んだもの・カメラで撮影したもの）は、容量を抑えるため一定の大きさ（400万画素）を超える場合に縮小したうえで、サムネイルとともに<strong>暗号化して</strong>端末内の本アプリ専用領域に保存されます。暗号化の鍵は乱数で作られ、暗号化されたメモのデータベースの中に保管されます。他のアプリから参照されることはなく、外部に送信されることもありません（第4条のバックアップを除く）。カメラで撮影した写真は、取り込みのために一時的に本アプリ専用の一時領域に置かれ、取り込み後すぐに削除されます。なお、撮影には端末のカメラアプリを使用するため、カメラアプリの設定によっては、カメラアプリ側に写真の控えが残る場合があります。</li>
             <li><strong>バックアップデータ（ファイルへの書き出し）</strong>：ファイルへの書き出しはユーザーが任意で実行するものです。書き出されるファイルは<strong>暗号化されたままの状態</strong>であり、保存先はユーザー自身が選択します。当方のサーバーには一切送信されません。復元には、そのバックアップを作成した時点のマスターパスワードが必要です。Googleドライブへのバックアップについては第4条をご覧ください。</li>
         </ul>
 
         <h2>4. Googleドライブへのバックアップ</h2>
         <p>本アプリは、機種変更やスマートフォンの故障に備えて、データをユーザー本人のGoogleドライブにバックアップする機能を備えています。この機能は<strong>ユーザーが自ら操作した場合にのみ</strong>動作し、初期状態では何も送信しません。</p>
         <ul>
-            <li><strong>保存する内容</strong>：メモのデータベース・設定・壁紙画像を1つのファイルにまとめたものです。中身はすべて、マスターパスワードから派生した鍵で<strong>暗号化してから</strong>送信します。当方のサーバーを経由することはなく、当方・Google社を含む第三者が内容を読むことはできません。</li>
+            <li><strong>保存する内容</strong>：メモのデータベース・設定・壁紙画像・添付画像を1つのファイルにまとめたものです。中身はすべて<strong>暗号化してから</strong>送信します（データベース・設定・壁紙画像はマスターパスワードから派生した鍵で、添付画像はデータベースの中に保管された鍵で暗号化されています）。当方のサーバーを経由することはなく、当方・Google社を含む第三者が内容を読むことはできません。</li>
             <li><strong>保存先</strong>：ユーザー本人のGoogleドライブ内の「ないしょメモ」フォルダです。手動で保存したバックアップ（機種変更用）は常に最新の1つだけを保管し、保存するたびに置き換えます。</li>
-            <li><strong>毎日のじどう保存</strong>：ユーザーがオンにした場合に限り、アプリのロックを解除したときに1日1回自動で保存します。保管するのは最新の3つまでで、古いものから削除します。初期状態はオフです。</li>
+            <li><strong>毎日のじどう保存</strong>：ユーザーがオンにした場合に限り、アプリのロックを解除したときに1日1回自動で保存します。モバイル通信量を使わないよう、<strong>Wi-Fiに接続しているときだけ</strong>実行します（手動の保存は接続の種類を問わず行えます）。保管するのは最新の3つまでで、古いものから削除します。初期状態はオフです。</li>
             <li><strong>Googleアカウントへのアクセス</strong>：Googleの認可画面でユーザーが許可した場合に限り、Googleドライブの <code>drive.file</code> 権限（<strong>本アプリが作成したファイルにのみ</strong>アクセスできる権限）を使用します。本アプリはユーザーのほかのファイル、メールアドレス、氏名、連絡先等にアクセスせず、取得もしません。アクセスのための鍵（アクセストークン）は端末内で一時的に使用するのみで、保存も外部への送信も行いません。</li>
             <li><strong>用途の限定</strong>：Google APIから受け取った情報は、バックアップの保存・一覧・復元・古いバックアップの削除にのみ使用し、それ以外の目的には使用せず、第三者に提供することもありません。本アプリによるGoogle APIから受け取った情報の使用および他のアプリへの転送は、<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API サービスのユーザーデータに関するポリシー</a>（限定使用の要件を含む）に準拠します。</li>
             <li><strong>削除とアクセスの取り消し</strong>：バックアップはユーザー本人のGoogleドライブにあるため、ユーザーはいつでもGoogleドライブから削除できます。本アプリを削除してもGoogleドライブ上のバックアップは自動的には削除されません。本アプリへのアクセス許可は、Googleアカウントの「サードパーティ製のアプリとサービス」からいつでも取り消せます。</li>
@@ -120,8 +121,9 @@
             <li><strong>通知 (POST_NOTIFICATIONS)</strong>：リマインダー通知の送信のため。</li>
             <li><strong>正確なアラーム (SCHEDULE_EXACT_ALARM)</strong>：指定した時刻に正確にリマインダーを作動させるため。</li>
             <li><strong>起動完了受信 (RECEIVE_BOOT_COMPLETED)</strong>：端末の再起動後にリマインダーのスケジュールとウィジェットの表示を自動復元するため。</li>
+            <li><strong>ネットワーク状態の確認 (ACCESS_NETWORK_STATE)</strong>：毎日のじどう保存をWi-Fi接続時に限るため、現在の接続が従量制（モバイル通信等）かどうかのみを確認します。</li>
         </ul>
-        <p>なお、壁紙画像の選択にはAndroid標準のフォトピッカーを使用しているため、<strong>写真ライブラリ全体へのアクセス権限は要求しません</strong>。本アプリが扱えるのはユーザーがその場で選択した画像のみです。</p>
+        <p>なお、壁紙画像と添付画像の選択にはAndroid標準のフォトピッカーを使用しているため、<strong>写真ライブラリ全体へのアクセス権限は要求しません</strong>。本アプリが扱えるのはユーザーがその場で選択した画像のみです。また、写真の撮影には端末のカメラアプリを呼び出すため、<strong>本アプリはカメラの権限を持ちません</strong>。</p>
 
         <h2>6. 不具合報告</h2>
         <p>本アプリはFirebase Crashlytics等のクラッシュレポートサービスを使用していません。アプリが予期せず終了した場合、原因調査のための記録（例外の種類・発生箇所のクラス名・メソッド名・行番号）を端末内にのみ保存します。この記録にはメモの内容・マスターパスワード・ファイルパスは含まれません。</p>
@@ -148,7 +150,7 @@
         </div>
 
         <div class="footer">
-            制定日：2026年8月23日　最終更新日：2026年9月20日<br>
+            制定日：2026年8月23日　最終更新日：2026年9月21日<br>
             © 2026 BunDev
         </div>
     </div>
@@ -172,15 +174,16 @@
             <li><strong>Scheduled Notifications</strong>: So that reminders can be re-registered after a device restart without your master password, the <strong>title and time</strong> of each note that has a reminder are stored unencrypted in the App's private storage area on your device. They are not accessible to other apps and are never transmitted externally. They are deleted when you turn the reminder off or delete the note. Note that the notification itself displays the note's title.</li>
             <li><strong>Widget Display Data</strong>: To show calendar markers on the home screen widget, the App stores <strong>only the dates and categories</strong> of your scheduled items on your device. No titles or note content are stored. This information is used solely to draw the widget and is never transmitted externally.</li>
             <li><strong>Wallpaper Images</strong>: An image set as a watermark wallpaper is copied into the App's private storage area on your device. It is not accessible to other apps and is never transmitted externally.</li>
+            <li><strong>Attached Images</strong>: Images you attach to a note (chosen from your gallery or taken with the camera) are reduced in size when they exceed a set limit (4 megapixels) to save space, and are then stored <strong>encrypted</strong>, together with their thumbnails, in the App's private storage area on your device. The encryption key is generated randomly and kept inside the encrypted note database. They are not accessible to other apps and are never transmitted externally (except in the backup described in Section 4). A photo taken with the camera is placed in the App's private temporary area only while it is being taken in, and is deleted immediately afterwards. Because photos are taken with your device's camera app, that camera app may keep its own copy depending on its settings.</li>
             <li><strong>Backup Data (Export to File)</strong>: Exporting to a file is entirely user-initiated. The exported file remains <strong>encrypted</strong>, and you choose where it is saved. It is never sent to our servers. Restoring a backup requires the master password that was in use when the backup was created. For backups to Google Drive, see Section 4.</li>
         </ul>
 
         <h2>4. Backup to Google Drive</h2>
         <p>To prepare for a new phone or a broken one, the App can back up your data to your own Google Drive. This feature works <strong>only when you use it yourself</strong>; by default nothing is sent.</p>
         <ul>
-            <li><strong>What is saved</strong>: A single file containing the note database, settings and wallpaper images. Everything in it is <strong>encrypted before it is sent</strong>, with a key derived from your master password. It never passes through our servers, and no third party — including us and Google — can read its contents.</li>
+            <li><strong>What is saved</strong>: A single file containing the note database, settings, wallpaper images and attached images. Everything in it is <strong>encrypted before it is sent</strong> (the database, settings and wallpapers with a key derived from your master password; attached images with the key kept inside the database). It never passes through our servers, and no third party — including us and Google — can read its contents.</li>
             <li><strong>Where it is saved</strong>: A folder named "ないしょメモ" in your own Google Drive. A backup you save manually (for moving to a new phone) is kept as a single, latest file and is replaced each time you save.</li>
-            <li><strong>Daily automatic backup</strong>: Only if you turn it on, the App saves a backup once a day when you unlock it. Up to the three most recent are kept; older ones are deleted. It is off by default.</li>
+            <li><strong>Daily automatic backup</strong>: Only if you turn it on, the App saves a backup once a day when you unlock it. To avoid using mobile data, it runs <strong>only while you are connected to Wi-Fi</strong> (a manual save works on any connection). Up to the three most recent are kept; older ones are deleted. It is off by default.</li>
             <li><strong>Access to your Google Account</strong>: Only after you grant permission on Google's authorization screen, the App uses the Google Drive <code>drive.file</code> scope, which allows access <strong>only to files the App itself has created</strong>. The App does not access or obtain your other files, email address, name, contacts or any other account information. The access token is used only temporarily on your device and is neither stored nor sent anywhere else.</li>
             <li><strong>Limited use</strong>: Information received from Google APIs is used only to save, list and restore backups and to delete older backups. It is not used for any other purpose and is never shared with third parties. The App's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
             <li><strong>Deletion and revoking access</strong>: Because backups are in your own Google Drive, you can delete them from Google Drive at any time. Uninstalling the App does not automatically delete backups in Google Drive. You can revoke the App's access at any time from "Third-party apps &amp; services" in your Google Account.</li>
@@ -196,8 +199,9 @@
             <li><strong>Notifications (POST_NOTIFICATIONS)</strong>: To send reminder notifications.</li>
             <li><strong>Exact Alarm (SCHEDULE_EXACT_ALARM)</strong>: To trigger reminders at the exact scheduled time.</li>
             <li><strong>Boot Completed (RECEIVE_BOOT_COMPLETED)</strong>: To automatically restore reminder schedules and widget display after a device restart.</li>
+            <li><strong>Network State (ACCESS_NETWORK_STATE)</strong>: To limit the daily automatic backup to Wi-Fi, the App checks only whether the current connection is metered (such as mobile data).</li>
         </ul>
-        <p>Wallpaper selection uses the Android system photo picker, so the App <strong>does not request access to your photo library</strong>. It can only handle the single image you explicitly select.</p>
+        <p>Choosing wallpapers and attached images uses the Android system photo picker, so the App <strong>does not request access to your photo library</strong>. It can only handle the images you explicitly select. Photos are taken with your device's camera app, so <strong>the App does not hold the camera permission</strong>.</p>
 
         <h2>6. Crash Records and Bug Reports</h2>
         <p>We do not use Firebase Crashlytics or any other crash reporting service. If the App terminates unexpectedly, a diagnostic record (exception type, class name, method name and line number) is saved on your device only. This record contains no note content, no master password and no file paths.</p>
@@ -223,7 +227,7 @@
         </div>
 
         <div class="footer">
-            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: September 20, 2026<br>
+            Established: August 23, 2026 &nbsp;|&nbsp; Last Updated: September 21, 2026<br>
             © 2026 BunDev
         </div>
     </div>
